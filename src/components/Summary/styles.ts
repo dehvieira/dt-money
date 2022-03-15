@@ -24,11 +24,10 @@ export const Container = styled.div`
       font-weight: 500;
       line-height: 3rem;
     }
-    
-    &.total-background{
-    background: var(--green);
-    color: white;
-}
 
+    &.total-background {
+      background: var(--green);
+      color: white;
+    }
   }
 `;
