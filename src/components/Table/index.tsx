@@ -1,23 +1,25 @@
 import { createTheme, TableColumn } from 'react-data-table-component';
 
-interface IDataRow {
-  titulo: string;
-  valor: number;
-  categoria: string;
-  data: string;
+export interface IDataRow {
+  title: string;
+  value: number;
+  category: string;
+  //date: string;
+  createdAt: string,
+  type?:string,
 }
 
 export const columns: TableColumn<IDataRow>[] = [
   {
     name: 'Titulo',
-    selector: (row) => row.titulo,
+    selector: (row) => row.title,
   },
   {
     name: 'Valor',
-    selector: (row) => row.valor,
+    selector: (row) => row.value,
     conditionalCellStyles: [
       {
-        when: (row) => row.valor < 0,
+        when: (row) => row.value < 0,
         style: {
           color: 'red',
         },
@@ -26,11 +28,11 @@ export const columns: TableColumn<IDataRow>[] = [
   },
   {
     name: 'Categoria',
-    selector: (row) => row.categoria,
+    selector: (row) => row.category,
   },
   {
     name: 'Data',
-    selector: (row) => row.data,
+    selector: (row) => row.createdAt,
   },
 ];
 
