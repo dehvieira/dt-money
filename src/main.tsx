@@ -15,7 +15,8 @@ createServer({
           titulo: 'Carro',
           valor: -5000, //" R$ 2,000",
           categoria: 'Moradia',
-          data: '10-01-2022',
+          data: new Date(),
+          type: 'deposit',
         },
       ];
     });
