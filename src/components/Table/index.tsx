@@ -5,8 +5,8 @@ export interface IDataRow {
   value: number;
   category: string;
   //date: string;
-  createdAt: string,
-  type?:string,
+  createdAt: string;
+  type?: string;
 }
 
 export const columns: TableColumn<IDataRow>[] = [

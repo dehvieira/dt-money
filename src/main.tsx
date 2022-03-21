@@ -5,15 +5,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 createServer({
+  models: {
+    transaction: Model,
+  },
 
-    models:{
-      transaction: Model
-    },
-
-    seeds(server){
-      server.db.loadData({
-        transactions: [
-          {
+  seeds(server) {
+    server.db.loadData({
+      transactions: [
+        {
           id: 1,
           title: 'Desenvolvimento Web',
           type: 'deposit',
@@ -31,25 +30,22 @@ createServer({
           date: '20-03-2022',
           createdAt: new Date('2021-02-11 11:00:00'),
         },
-        
-        ],
-      })
-    },
+      ],
+    });
+  },
 
   routes() {
     this.namespace = 'api';
 
     this.get('/transactions', () => {
-      return this.schema.all('transaction')
+      return this.schema.all('transaction');
     });
 
+    this.post('transactions', (schema, request) => {
+      const data = JSON.parse(request.requestBody);
 
-  this.post('transactions', (schema, request) => {
-    const data = JSON.parse(request.requestBody)
-
-    return schema.create('transaction', data)
-  })
-
+      return schema.create('transaction', data);
+    });
   },
 });
 

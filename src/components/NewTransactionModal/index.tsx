@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
 import ReactTooltip from 'react-tooltip';
-import { api } from "services/api";
+import { api } from 'services/api';
 
 import closeImg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
@@ -20,52 +20,47 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransitionMo
   const [type, setType] = useState('deposit');
 
   function handleCreateNewTransaction(event: FormEvent) {
-    event.preventDefault();   
-    
+    event.preventDefault();
+
     const data = {
       title,
       value,
-      category, 
-      type
+      category,
+      type,
     };
 
-    api.post('/transactions', data)
-
+    api.post('/transactions', data);
   }
-  
 
   return (
-    <Modal   
+    <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
-      <button 
-          type="button" 
-          onClick={onRequestClose} 
-          className="react-modal-close" 
-          data-tip="Clique para fechar">
-          <img src={closeImg} alt="Fechar modal" />
+      <button
+        type="button"
+        onClick={onRequestClose}
+        className="react-modal-close"
+        data-tip="Clique para fechar"
+        data-type="info"
+      >
+        <img src={closeImg} alt="Fechar modal" />
       </button>
 
-      <Container onSubmit={handleCreateNewTransaction}>       
+      <Container onSubmit={handleCreateNewTransaction}>
         <h2>Cadastrar transação</h2>
 
-        <input 
-            type="text" 
-            placeholder="Título" 
-            value={title} 
-            onChange={(event) => setTitle(event.target.value)} 
+        <input type="text" placeholder="Título" value={title} onChange={(event) => setTitle(event.target.value)} />
+
+        <input
+          type="number"
+          placeholder="Valor"
+          value={value}
+          onChange={(event) => setValue(Number(event.target.value))}
         />
 
-        <input 
-            type="number" 
-            placeholder="Valor" 
-            value={value} 
-            onChange={(event) => setValue(Number(event.target.value))} 
-        />
-    
         <TransactionTypeContainer>
           <RadioBox
             type="button"
@@ -92,16 +87,11 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransitionMo
           </RadioBox>
         </TransactionTypeContainer>
 
-        <input placeholder="Categoria" 
-              value={category}
-              onChange={event => setCategory(event.target.value)}        
-        />
+        <input placeholder="Categoria" value={category} onChange={(event) => setCategory(event.target.value)} />
 
-        <button type="submit" >Cadastrar</button>
+        <button type="submit">Cadastrar</button>
         <ReactTooltip />
       </Container>
     </Modal>
   );
-
-
 }
