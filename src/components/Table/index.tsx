@@ -1,15 +1,16 @@
 import { createTheme, TableColumn } from 'react-data-table-component';
 
-export interface IDataRow {
+export type DataRow = {
   title: string;
   value: number;
   category: string;
-  //date: string;
-  createdAt: string;
-  type?: string;
+  date: string;
+  //createdAt: string;
+  type?: string;  
 }
 
-export const columns: TableColumn<IDataRow>[] = [
+
+export const columns: TableColumn<DataRow>[] = [
   {
     name: 'Titulo',
     selector: (row) => row.title,
@@ -17,6 +18,7 @@ export const columns: TableColumn<IDataRow>[] = [
   {
     name: 'Valor',
     selector: (row) => row.value,
+    
     conditionalCellStyles: [
       {
         when: (row) => row.value < 0,
@@ -32,7 +34,7 @@ export const columns: TableColumn<IDataRow>[] = [
   },
   {
     name: 'Data',
-    selector: (row) => row.createdAt,
+    selector: (row) => row.Da,
   },
 ];
 
