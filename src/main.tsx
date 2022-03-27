@@ -4,13 +4,12 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 
-
 createServer({
   models: {
     transaction: Model,
   },
-  
-    seeds(server) {
+
+  seeds(server) {
     server.db.loadData({
       transactions: [
         {
@@ -20,7 +19,7 @@ createServer({
           value: 3000,
           category: 'Projetos',
           date: '20-03-2021',
-          //createdAt: new Date('2021-02-05 08:00:00'),
+          createdAt: new Date('2021-02-05 08:00:00'),
         },
         {
           id: 2,
@@ -29,7 +28,7 @@ createServer({
           type: 'withdraw',
           category: 'Moradia',
           date: '20-03-2022',
-          //createdAt: new Date('2021-02-11 11:00:00'),
+          createdAt: new Date('2021-02-11 11:00:00'),
         },
       ],
     });

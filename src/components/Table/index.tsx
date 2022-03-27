@@ -2,13 +2,12 @@ import { createTheme, TableColumn } from 'react-data-table-component';
 
 export type DataRow = {
   title: string;
-  value: number;
+  value: number | string;
   category: string;
   date: string;
-  //createdAt: string;
-  type?: string;  
-}
-
+  createdAt: string;
+  type?: string;
+};
 
 export const columns: TableColumn<DataRow>[] = [
   {
@@ -18,10 +17,10 @@ export const columns: TableColumn<DataRow>[] = [
   {
     name: 'Valor',
     selector: (row) => row.value,
-    
+
     conditionalCellStyles: [
       {
-        when: (row) => row.value < 0,
+        when: (row) => row.value < '0',
         style: {
           color: 'red',
         },
@@ -34,7 +33,7 @@ export const columns: TableColumn<DataRow>[] = [
   },
   {
     name: 'Data',
-    selector: (row) => row.Da,
+    selector: (row) => row.createdAt,
   },
 ];
 

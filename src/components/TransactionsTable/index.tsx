@@ -1,43 +1,29 @@
-import { columns, customStyles, DataRow} from 'components/Table';
-import React, { useEffect, useState } from 'react';
+import { columns, customStyles } from 'components/Table';
+import React, { useContext} from 'react';
 import DataTable from 'react-data-table-component';
-import { api } from 'services/api';
+import { TransactionsContext } from 'TransactionsContext';
 
 import { Container } from './styles';
 
+export function TransactionsTable() {
+  const transactions = useContext(TransactionsContext);
+ 
+  transactions.map((transaction) => {
+    const newValue = transaction.value
+      .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+      .replace('.', ',');
+    transaction.value = newValue;
 
-
-export function TransactionsTable()  {
-  const [transactions, setTransactions] = useState<DataRow[]>([]);
-
-   
-  useEffect(() => {
-    api.get('transactions').then((response) =>
-     setTransactions(response.data.transactions));            
-      }, []);  
-
-      console.log(transactions)
-
-      //var f = atual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}).replace(".", ",");
-
-       
-            
-  return (
+    const newDate = new Date(transaction.createdAt);
+    transaction.createdAt = newDate.toLocaleDateString('pt-br');
+  
+  });
+  
+  return  (
     <Container>
-
-      <DataTable columns={columns} data={transactions} theme="default" customStyles={customStyles} 
-            
-      />
+      <DataTable columns={columns} data={transactions} theme="default" customStyles={customStyles} />
     </Container>
   );
 }
 
-  // const [pending, setPending] = useState(true);
-
-   //  //use state "loading" progress pending
-    //  const timeout = setTimeout(() => {
-    //   setPending(false);
-    // }, 2000);
-    // return () => clearTimeout(timeout);
-    // ///
 
