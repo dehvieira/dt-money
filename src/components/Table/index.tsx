@@ -2,7 +2,7 @@ import { createTheme, TableColumn } from 'react-data-table-component';
 
 export type DataRow = {
   title: string;
-  value: number | string;
+  value: number;
   category: string;
   date: string;
   createdAt: string;
@@ -20,7 +20,7 @@ export const columns: TableColumn<DataRow>[] = [
 
     conditionalCellStyles: [
       {
-        when: (row) => row.value < '0',
+        when: (row) => row.type === 'withdraw',
         style: {
           color: 'red',
         },

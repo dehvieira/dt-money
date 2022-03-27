@@ -17,6 +17,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["./src", "public/movies.js"],
+  "include": ["./src"],
   "exclude": ["node_modules"]
 }
